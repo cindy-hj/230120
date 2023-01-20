@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- meta는 반응형으로 발전하면서 나온것 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 기기에 맞는 가로값으로 맞춰줘! 반응형을 하기 위한 준비 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어 쿼리</title>
+    <script>
+        // #### 미디어쿼리
+        // => 반응형의 기준이 되는 기본 가로 사이즈의 조건부분 작성
+        // => css 구분 작성하면 각 크기 기준에 맞추어 
+        // => 레이아웃이 변경됨
+        // pc영역 => 최소사이즈만 잡음, min-width (1980~1920 내용 삽입 최대 크기)
+        // 타블릿 영역 => max-width ~ min-width (1440, 780에 맞추어 세분화)
+        // 모바일 영역 => 타블릿 여영ㄱ에 맞추어 최대값 설정
+        // pc와 중간값은 px작업 가능.. (고정값 사용)
+        // 모바일은 퍼센트 값으로 작업해야함. 작아지면.. 공백만 보이니까..?
+        // 큰것에서부터 작은것 순으로 작업하는게 편리
+        // media 기기명칭 and (크기조건) and (크기조건) {
+        //      해당 크기에 맞는 css작성하기    
+        // }        
+        // 기기명칭 => 전체 기기 => all 
+
+    </script>
+
+    <style>
+        @media all and (min-width:1980px){
+            /* pc 영역 */
+            body {
+                background-color: aliceblue;
+            }
+            #wrap {
+                /* 내용 영역에서는 1980이 최대값 */
+                width: 1980px;
+                height: 700px;
+                background-color: antiquewhite;
+                margin: 0 auto;
+                padding: 50px;
+                box-sizing: border-box;
+            }    
+            .in_box {
+                width: 432.5px;
+                height: 300px;
+                background-color: blueviolet;
+                float: left;
+                margin-right: 50px;
+            }
+            /* .in_box:nth-child(1){}
+            .in_box:first-child{}
+            .in_box:last-child{} */
+            /* in_box의 순서값이 아닌 한 부모 안쪽에 형제의 순서값으로 따지는것. class가 in_box가 아니더라도 형제관계이면 순서에 포함됨! */
+            .in_box:nth-child(4){
+                margin-right: 0;
+            }
+            #show_hide_box{
+                display: none;
+            }
+        }
+        @media all and (max-width:1979px) and (min-width:1440px){
+            /* 타블릿 영역 */
+            body {
+                background-color: rgb(210, 255, 168);
+            }
+            #wrap {
+                /* 내용 영역에서 1440 최소값 기준 */
+                width: 1440px;
+                height: 700px;
+                background-color: rgb(151, 103, 40);
+                margin: 0 auto;
+                padding: 50px;
+                box-sizing: border-box;
+            }    
+            .in_box {
+                width: 432.5px;
+                height: 300px;
+                background-color: blueviolet;
+                float: left;
+                margin-right: 50px;
+                margin-bottom: 50px;
+            }
+            .in_box:nth-child(4){
+                margin-right: 0;
+            }
+            #show_hide_box{
+                display: block;
+                background-color: salmon;
+                width: 375px;
+                height: 600px;
+                float: right;
+                margin-top: -350px;
+            }
+        }
+        @media all and (max-width:1439px){
+            /* 모바일 영역 */
+            body {
+                background-color: rgb(255, 197, 159);
+            }
+            #wrap {
+                width: 100%;
+                height: 700px;
+                background-color: rgb(151, 103, 40);
+                margin: 0 auto;
+                padding: 50px;
+                box-sizing: border-box;
+            }    
+            .in_box {
+                width: 100%;
+                height: 300px;
+                background-color: blueviolet;
+                /* 가로 100%라 필요 없음 */
+                /* float: left;
+                margin-right: 50px; */
+                margin-bottom: 50px;
+            }
+            /* .in_box:nth-child(4){
+                margin-right: 0;
+            } */
+            #show_hide_box{
+                display: block;
+                background-color: salmon;
+                width: 100%;
+                height: 600px;
+                /* float: right; */
+                /* margin-top: -350px; */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="in_box">1</div>
+        <div class="in_box">2</div>
+        <div class="in_box">3</div>
+        <div class="in_box">4</div>
+        <div id="show_hide_box">
+            보였다 사라졌다
+        </div>
+    </div>
+</body>
+</html>
